@@ -1,11 +1,11 @@
 import { studentServices } from "./student.services";
-import sendSendResponse from "../../utils/sendResponse";
+import sendResponse from "../../utils/sendResponse";
 import httpStatus from "http-status";
 import catchAsync from "../../utils/catchAsync";
 
 const getAllStudent = catchAsync(async (req, res) => {
   const result = await studentServices.getAllStudentFromDB(req.query);
-  sendSendResponse(res, {
+  sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: "Student Retrieve Successfull",
@@ -14,9 +14,9 @@ const getAllStudent = catchAsync(async (req, res) => {
 });
 
 const getSingalStudent = catchAsync(async (req, res) => {
-  const { studentId } = req.params;
-  const result = await studentServices.getSingalStudentFromDB(studentId);
-  sendSendResponse(res, {
+  const { id } = req.params;
+  const result = await studentServices.getSingalStudentFromDB(id);
+  sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: "Single Student Retrieve Successfull",
@@ -24,9 +24,9 @@ const getSingalStudent = catchAsync(async (req, res) => {
   });
 });
 const getDeletedStudent = catchAsync(async (req, res) => {
-  const { studentId } = req.params;
-  const result = await studentServices.deleteStudentFromDB(studentId);
-  sendSendResponse(res, {
+  const { id } = req.params;
+  const result = await studentServices.deleteStudentFromDB(id);
+  sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: "Student Deleted Successfull",
@@ -34,11 +34,11 @@ const getDeletedStudent = catchAsync(async (req, res) => {
   });
 });
 const updateStudent = catchAsync(async (req, res) => {
-  const { studentId } = req.params;
+  const { id } = req.params;
   const { student } = req.body;
-  const result = await studentServices.updateStudentIntoDB(studentId, student);
+  const result = await studentServices.updateStudentIntoDB(id, student);
 
-  sendSendResponse(res, {
+  sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: "Student is updated succesfully",

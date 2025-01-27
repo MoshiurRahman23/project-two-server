@@ -1,13 +1,13 @@
 import httpStatus from "http-status";
 import catchAsync from "../../utils/catchAsync";
-import sendSendResponse from "../../utils/sendResponse";
+import sendResponse from "../../utils/sendResponse";
 import { AcademicFacultyServices } from "./academicFaculty.Service";
 
 const createAcdemicFaculty = catchAsync(async (req, res) => {
   const result = await AcademicFacultyServices.createAcdemicFacultyIntoDB(
     req.body
   );
-  sendSendResponse(res, {
+  sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: "Academic Faculty Create SuccessFull",
@@ -16,7 +16,7 @@ const createAcdemicFaculty = catchAsync(async (req, res) => {
 });
 const getAllAcdemicFaculty = catchAsync(async (req, res) => {
   const result = await AcademicFacultyServices.getAllAcademicFacultyFromDB();
-  sendSendResponse(res, {
+  sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: "Academic Faculty reteieve SuccessFull",
@@ -27,7 +27,7 @@ const getSingleAcdemicFaculty = catchAsync(async (req, res) => {
   const { facultyId } = req.params;
   const result =
     await AcademicFacultyServices.getSingleAcadamicFacultyFromDB(facultyId);
-  sendSendResponse(res, {
+  sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: "Single Academic Faculty is reteieve SuccessFull",
@@ -41,7 +41,7 @@ const updateAcademicFaculty = catchAsync(async (req, res) => {
     facultyId,
     req.body
   );
-  sendSendResponse(res, {
+  sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: "update Academic Faculty is SuccessFull",

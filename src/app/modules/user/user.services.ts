@@ -94,7 +94,6 @@ const createFacultyIntoDB = async (password: string, payload: TFaculty) => {
     userData.id = await generateFacultyId();
 
     const newUser = await User.create([userData], { session });
-
     if (!newUser.length) {
       throw new AppError(httpStatus.BAD_REQUEST, "Faculty not found !!!!");
     }
@@ -102,7 +101,8 @@ const createFacultyIntoDB = async (password: string, payload: TFaculty) => {
     payload.id = newUser[0].id;
     payload.user = newUser[0]._id;
 
-    const newFaculty = await Faculty.create([userData], { session });
+    const newFaculty = await Faculty.create([payload], { session });
+
     if (!newFaculty.length) {
       throw new AppError(httpStatus.BAD_REQUEST, "Failed to create faculty");
     }
@@ -140,7 +140,6 @@ const createAdminIntoDB = async (password: string, payload: TAdmin) => {
 
     // create a user (transaction-1)
     const newUser = await User.create([userData], { session });
-
     //create a admin
     if (!newUser.length) {
       throw new AppError(httpStatus.BAD_REQUEST, "Failed to create admin");

@@ -1,12 +1,12 @@
 import httpStatus from "http-status";
 import catchAsync from "../../utils/catchAsync";
-import sendSendResponse from "../../utils/sendResponse";
+import sendResponse from "../../utils/sendResponse";
 import { AcademicDepartmentServices } from "./academicDepartment.services";
 
 const createAcademicDepartment = catchAsync(async (req, res) => {
   const result =
     await AcademicDepartmentServices.createAcademicDepartmentIntoDB(req.body);
-  sendSendResponse(res, {
+  sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: "Academic Department Create successful",
@@ -17,7 +17,7 @@ const createAcademicDepartment = catchAsync(async (req, res) => {
 const getAllAcdemicDepartment = catchAsync(async (req, res) => {
   const result =
     await AcademicDepartmentServices.getAllAcademicDepartmentFromDB();
-  sendSendResponse(res, {
+  sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: "Academic Department retieved successful",
@@ -29,7 +29,7 @@ const getSingleAcdemicDepartment = catchAsync(async (req, res) => {
   const { departmentId } = req.params;
   const result =
     await AcademicDepartmentServices.getSingleAcdemicDepartment(departmentId);
-  sendSendResponse(res, {
+  sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: "Single Academic Department reteiere Successfull",
@@ -43,7 +43,7 @@ const updateAcademicDepartment = catchAsync(async (req, res) => {
     departmentId,
     req.body
   );
-  sendSendResponse(res, {
+  sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: "update Academic Faculty is SuccessFull",

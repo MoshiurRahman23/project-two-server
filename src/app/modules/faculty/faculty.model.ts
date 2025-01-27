@@ -36,7 +36,7 @@ const facultySchema = new Schema<TFaculty, FacultyModel>(
     },
     designation: {
       type: String,
-      required: [true, "Degignationnnnnn is required"],
+      required: [true, "designation is required"],
     },
     name: {
       type: userNameSchema,
@@ -56,7 +56,10 @@ const facultySchema = new Schema<TFaculty, FacultyModel>(
       required: [true, "Email is required"],
       unique: true,
     },
-    contactNo: { type: String, required: [true, "Contact number is required"] },
+    contactNo: {
+      type: String,
+      required: [true, "Contact number is required"],
+    },
     emergencyContactNo: {
       type: String,
       required: [true, "Emergency contact number is required"],
